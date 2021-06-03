@@ -17,12 +17,26 @@ public class MemoryMemberRepository implements MemberRepository {
     }
 
     @Override
+//    optional class는 null 예외를 막기 딱 좋음!
+//    isPresent()로 null인지 체크
+//    ifPresent()로 null인지 체크
+
+    /*
+1. orElse() 메소드 : 저장된 값이 존재하면 그 값을 반환하고, 값이 존재하지 않으면 인수로 전달된 값을 반환함.
+
+2. orElseGet() 메소드 : 저장된 값이 존재하면 그 값을 반환하고, 값이 존재하지 않으면 인수로 전달된 람다 표현식의 결괏값을 반환함.
+
+3. orElseThrow() 메소드 : 저장된 값이 존재하면 그 값을 반환하고, 값이 존재하지 않으면 인수로 전달된 예외를 발생시킴.
+
+     */
     public Optional<Member> findById(Long id) {
         return Optional.ofNullable(store.get(id));
     }
 
     @Override
     public Optional<Member> findByName(String name) {
+//        store.values().forEach(member -> System.out.println(member.getName()));
+        System.out.println(store.values());
         return store.values().stream()
                 .filter(member -> member.getName().equals(name))
                 .findAny();

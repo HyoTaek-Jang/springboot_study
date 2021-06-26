@@ -4,11 +4,13 @@ import hello.hellospring.domain.Member;
 import hello.hellospring.repository.MemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
 
 //@Service // 스프링이 컨테이너에 서비스로 등록함.
+@Transactional // jpa쓰려면 서비스에 트랙져셔널이 필요함. 저장 변경 시 ㅇㅇ
 public class MemberService {
     private final MemberRepository memberRepository;
 

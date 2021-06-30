@@ -33,9 +33,6 @@ public class User {
     private String phoneNumber;
 
     @Column(nullable = false)
-    private LocalDateTime createdAt;
-
-    @Column(nullable = false)
     private String createdBy;
 
     private LocalDateTime updatedAt;

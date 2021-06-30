@@ -18,7 +18,6 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'mysql:mysql-connector-java'
 	implementation 'org.projectlombok:lombok:1.18.18'
-	implementation 'junit:junit:4.13.1'
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
 	// https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind

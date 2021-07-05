@@ -1,21 +1,35 @@
 package hello.core;
 
+import hello.core.discount.DiscountPolicy;
 import hello.core.discount.FixDiscountPolicy;
+import hello.core.discount.RateDiscountPolicy;
 import hello.core.member.MemberRepository;
 import hello.core.member.MemberService;
 import hello.core.member.MemberServiceImpl;
 import hello.core.member.MemoryMemberRepository;
 import hello.core.order.OrderService;
 import hello.core.order.OrderServiceImpl;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 
+@Configuration
 public class AppConfig {
     // 생성자 주입 방식
-    public MemberService memberService() {
-        return new MemberServiceImpl(new MemoryMemberRepository());
+    @Bean// 컨테이너에 들어감
+    public MemberRepository memberRepository() {
+        return new MemoryMemberRepository();
     }
-
+    @Bean
+    public MemberService memberService() {
+        return new MemberServiceImpl(memberRepository());
+    }
+    @Bean
     public OrderService orderService() {
-        return new OrderServiceImpl(new MemoryMemberRepository(),new FixDiscountPolicy());
+        return new OrderServiceImpl(memberRepository(), discountPolicy());
+    }
+    @Bean
+    public DiscountPolicy discountPolicy() {
+        return new RateDiscountPolicy();
     }
 
 //    질문!!! 메모리멤버레포를 저렇게 두개를 new하면 서로 다른 레포를 보는거 아닌가? 두개의 서비스가 !

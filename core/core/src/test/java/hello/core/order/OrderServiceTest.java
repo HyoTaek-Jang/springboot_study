@@ -29,8 +29,8 @@ public class OrderServiceTest {
         Member member = new Member(memberId, "name", Grade.VIP);
         memberService.join(member);
 
-        Order order = orderService.createOrder(memberId, "item", 10000);
+        Order order = orderService.createOrder(memberId, "item", 20000);
 
-        Assertions.assertThat(order.getDiscountPrice()).isEqualTo(1000);
+        Assertions.assertThat(order.getDiscountPrice()).isEqualTo(2000);
     }
 }
